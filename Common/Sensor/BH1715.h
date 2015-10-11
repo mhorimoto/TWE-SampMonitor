@@ -29,14 +29,12 @@ extern "C" {
 /***        Type Definitions                                              ***/
 /****************************************************************************/
 typedef struct {
-	// protected
-	bool_t bBusy;          // should block going into sleep
-
-	// public
-	int16 i16Result;
-
-	// private
-	uint8 u8TickCount, u8TickWait;
+  // protected
+  bool_t bBusy;          // should block going into sleep
+  // public
+  int16 i16Result;
+  // private
+  uint8 u8TickCount, u8TickWait;
 } tsObjData_BH1715;
 
 /****************************************************************************/
