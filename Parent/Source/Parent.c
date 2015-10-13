@@ -860,6 +860,33 @@ void vSerOutput_Standard(tsRxPktInfo sRxPktInfo, uint8 *p) {
     }
     break;
 
+  case PKT_ID_BH1715:
+    _C {
+      uint8 u8batt = G_OCTET();
+
+      uint16	u16adc1 = G_BE_WORD();
+      uint16	u16adc2 = G_BE_WORD();
+      int16 i16temp = G_BE_WORD();
+
+      // センサー情報
+      A_PRINTF(":ba=%04d:a1=%04d:a2=%04d:il=%04d" LB,
+	       DECODE_VOLT(u8batt), u16adc1, u16adc2, i16temp);
+
+#ifdef USE_LCD
+      // LCD への出力
+      V_PRINTF_LCD("%03d:%08X:%03d:%02X:D:%04d:%04d:%04d\n",
+		   u32sec % 1000,
+		   sRxPktInfo.u32addr_1st,
+		   sRxPktInfo.u8lqi_1st,
+		   sRxPktInfo.u16fct & 0xFF,
+		   u16adc1,
+		   u16adc2
+		   );
+      vLcdRefresh();
+#endif
+    }
+    break;
+
   case PKT_ID_TSL2561:
     _C {
       uint8 u8batt = G_OCTET();

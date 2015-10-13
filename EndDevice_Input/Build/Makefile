@@ -35,7 +35,7 @@ include ../Version.mk
 # ディレクトリ名(PROJNAMEの事前設定値)が使用されます。
 # - (../..dir名)_(..dir名)_(JENNIC_CHIP)_(VERSION).
 #
-#PROJNAME=MyProject
+PROJNAME=BH1715
 
 ### Source files
 # コンパイル対象のソースコードを列挙します。
@@ -87,6 +87,7 @@ APPSRC += ProcessEv_ADXL345_LowEnergy.c
 APPSRC += ProcessEv_MPL115A2.c
 APPSRC += ProcessEv_LIS3DH.c
 APPSRC += ProcessEv_L3GD20.c
+APPSRC += ProcessEv_BH1715.c
 APPSRC += ProcessEv_UART.c
 
 ### Target type
@@ -146,37 +147,37 @@ endif
 #  CFLAGS += -DDEBUG
 #  OBJDIR_SUFF += _Debug
 #  TARGET_SUFF += _Debug
-#endif 
+#endif
 
 ### Additional Src/Include Path
 # 下記に指定したディレクトリがソース検索パス、インクルード検索パスに設定
 # されます。Makefile のあるディレクトリからの相対パスを指定します。
 #
-APP_COMMON_SRC_DIR_ADD1 = ../../Common/Sensor  
-#APP_COMMON_SRC_DIR_ADD2 = 
-#APP_COMMON_SRC_DIR_ADD3 = 
+APP_COMMON_SRC_DIR_ADD1 = ../../Common/Sensor
+#APP_COMMON_SRC_DIR_ADD2 =
+#APP_COMMON_SRC_DIR_ADD3 =
 #APP_COMMON_SRC_DIR_ADD4 =
 #
 # インクルードディレクトリのみを追加指定したい場合は、-I オプションとして
 # INCFLAGS に追加します。
 #
-#INCFLAGS += -I../dummy 
+#INCFLAGS += -I../dummy
 
 ### Additional user objects (.a,.o)
 # 追加でリンクしたいライブラリ、オブジェクトファイルを指定します。
-# 
+#
 #ADDITIONAL_LIBS += ../../Common/libDummy_$(JENNIC_CHIP).a
 
-### Additional library 
+### Additional library
 # コンパイラ付属ライブラリ (math, spp など) を指定します。
 # ※ 各ライブラリの動作保証はありません。
 #
 LDLIBS += m
 
-### Additional linker options 
+### Additional linker options
 # リンカへの追加オプションです。
 # - 必要なオプションは事前定義されているため通常は指定不要です。
-# 
+#
 #LDFLAGS += -u dummy
 
 #########################################################################

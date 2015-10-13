@@ -17,24 +17,24 @@
  * アプリケーション基本データ構造体
  */
 typedef struct {
-	// MAC
-	uint8 u8channel;
+  // MAC
+  uint8 u8channel;
 
-	// LED Counter
-	uint32 u32LedCt;
+  // LED Counter
+  uint32 u32LedCt;
 
-	// Network context
-	tsToCoNet_Nwk_Context *pContextNwk;
-	tsToCoNet_NwkLyTr_Config sNwkLayerTreeConfig;
+  // Network context
+  tsToCoNet_Nwk_Context *pContextNwk;
+  tsToCoNet_NwkLyTr_Config sNwkLayerTreeConfig;
 
-	uint16 u16LedDur_ct; //! LED点灯カウンタ
+  uint16 u16LedDur_ct; //! LED点灯カウンタ
 
-	// その他
-	tsFlash sFlash; //!< フラッシュの情報
-	bool_t bFlashLoaded;
-	uint8 u8DebugLevel;
-
-	uint8 u8DO_State;	//	DOの状態(0:Hi, 1:Lo, それ以外:未定義)
+  // その他
+  tsFlash sFlash; //!< フラッシュの情報
+  bool_t bFlashLoaded;
+  uint8 u8DebugLevel;
+  bool_t received;   // parent.cで使う
+  uint8 u8DO_State;	//	DOの状態(0:Hi, 1:Lo, それ以外:未定義)
 } tsAppData_Pa;
 extern tsAppData_Pa sAppData_Pa;
 

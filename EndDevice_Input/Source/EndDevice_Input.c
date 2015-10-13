@@ -474,11 +474,25 @@ void cbAppColdStart(bool_t bAfterAhiInit) {
 				    // イベント処理の初期化
 				    vInitAppStandard();
 				  } else
+				    // BH1715
+				    if ( sAppData.sFlash.sData.u8mode == PKT_ID_BH1715 ) {
+				      sToCoNet_AppContext.bSkipBootCalib = FALSE; // 起動時のキャリブレーションを行う
+				      sToCoNet_AppContext.u8MacInitPending = TRUE; // 起動時の MAC 初期化を省略する(送信する時に初期化する)
+
+				      // ADC の初期化
+				      vInitADC();
+
+				      // Other Hardware
+				      vInitHardware(FALSE);
+
+				      // イベント処理の初期化
+				      vInitAppBH1715();
+				    } else
 #endif // TWX0003
 #endif // CNFMST
-				    {
-				      ;
-				    } // 終端の else 節
+				      {
+					;
+				      } // 終端の else 節
 
       // イベント処理関数の登録
       if (pvProcessEv1) {

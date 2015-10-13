@@ -1,7 +1,8 @@
 VERSION_MAIN = 1
 VERSION_SUB  = 5
-VERSION_VAR  = 5
+VERSION_VAR  = 6
 
+# 1.5.6 BH1715 対応
 # 1.5.5 インタラクティブモードの出力がおかしい点を修正
 # 1.5.4 BME280 対応、その他修正
 # 1.5.3 ADXL345 シェイクモードの調整 FIFOの修正

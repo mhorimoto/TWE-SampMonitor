@@ -52,6 +52,7 @@ extern const uint8 au8EncKey[];
 #define PKT_ID_L3GD20 0x37
 #define PKT_ID_S1105902 0x38
 #define PKT_ID_BME280 0x39
+#define PKT_ID_BH1715 0x3A
 #define PKT_ID_IO_TIMER 0x51
 #define PKT_ID_UART 0x81
 #define PKT_ID_ADXL345_LOWENERGY 0xA1

@@ -14,7 +14,7 @@
 # 定値となります。この変数はファイル名やフォルダ名の決定にも使用されます。
 #
 #TWE_CHIP_MODEL ?= JN5148
-#TWE_CHIP_MODEL ?= JN5164
+TWE_CHIP_MODEL ?= JN5164
 #
 # また TARGET_DIR 変数に .. 、PROJNAME に ../.. のディレクトリ名を格納
 # します。
@@ -35,7 +35,7 @@ include ../Version.mk
 # ディレクトリ名(PROJNAMEの事前設定値)が使用されます。
 # - (../..dir名)_(..dir名)_(JENNIC_CHIP)_(VERSION).
 #
-#PROJNAME=MyProject
+PROJNAME=BH1715
 
 ### Source files
 # コンパイル対象のソースコードを列挙します。

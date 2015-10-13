@@ -22,11 +22,16 @@
 
 #include "ccitt8.h"
 
-#undef SERIAL_DEBUG
+/* #define SERIAL_DEBUG1 */
+/* #include <serial.h> */
+/* #include <fprintf.h> */
+/* extern tsFILE sDebugStream1; */
+
+#define SERIAL_DEBUG
 #ifdef SERIAL_DEBUG
-# include <serial.h>
-# include <fprintf.h>
-extern tsFILE sDebugStream;
+#include <serial.h>
+#include <fprintf.h>
+extern tsFILE sSerStream;
 #endif
 
 /****************************************************************************/
@@ -153,7 +158,7 @@ PUBLIC int16 i16BH1715readResult()
   i32result = (i32result * 10 + 30) / 60; // i32result/1.2/5
 
 #ifdef SERIAL_DEBUG
-  vfPrintf(&sDebugStream, "\n\rBH1715 DATA %x", *((uint16*)au8data) );
+  //  vfPrintf(&sDebugStream, "\n\rBH1715 DATA %x", *((uint16*)au8data) );
 #endif
 
   return (int16)i32result;
@@ -173,14 +178,14 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
     if (pObj->u8TickCount < 100) {
       pObj->u8TickCount += pSnsObj->u8TickDelta;
 #ifdef SERIAL_DEBUG
-      vfPrintf(&sDebugStream, "+");
+      //      vfPrintf(&sDebugStream, "+");
 #endif
     }
     break;
   case E_EVENT_START_UP:
     pObj->u8TickCount = 100; // expire immediately
 #ifdef SERIAL_DEBUG
-    vfPrintf(&sDebugStream, "\n\rBH1715 WAKEUP");
+    //    vfPrintf(&sDebugStream, "\n\rBH1715 WAKEUP");
 #endif
     break;
   default:
@@ -199,7 +204,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
       case E_ORDER_KICK:
 	vSnsObj_NewState(pSnsObj, E_SNSOBJ_STATE_MEASURING);
 #ifdef SERIAL_DEBUG
-	vfPrintf(&sDebugStream, "\n\rBH1715 KICKED");
+	//	vfPrintf(&sDebugStream, "\n\rBH1715 KICKED");
 #endif
 	break;
       default:
@@ -250,7 +255,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
     switch (eEvent) {
     case E_EVENT_NEW_STATE:
 #ifdef SERIAL_DEBUG
-      vfPrintf(&sDebugStream, "\n\rBH1715_CP: %d", pObj->i16Result);
+      //      vfPrintf(&sDebugStream, "\n\rBH1715_CP: %d", pObj->i16Result);
 #endif
       break;
     case E_ORDER_KICK:
