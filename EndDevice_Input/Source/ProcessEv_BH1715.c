@@ -318,9 +318,7 @@ static void vProcessBH1715(teEvent eEvent) {
   vSnsObj_Process(&sSnsObj, eEvent); // ポーリングの時間待ち
   if (bSnsObj_isComplete(&sSnsObj)) {
     u8sns_cmplt |= E_SNS_BH1715_CMP;
-    V_PRINTF(LB"!BH1715: %d.%02dC",
-	     sObjBH1715.i16Result / 100, sObjBH1715.i16Result % 100
-	     );
+    V_PRINTF(LB"!BH1715: %d Lx",sObjBH1715.i16Result);
     // 完了時の処理
     if (u8sns_cmplt == E_SNS_ALL_CMP) {
       ToCoNet_Event_Process(E_ORDER_KICK, 0, vProcessEvCore);

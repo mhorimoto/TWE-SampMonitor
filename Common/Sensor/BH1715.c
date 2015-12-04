@@ -27,7 +27,7 @@
 /* #include <fprintf.h> */
 /* extern tsFILE sDebugStream1; */
 
-#define SERIAL_DEBUG
+/* #define SERIAL_DEBUG  */ /* 1.5.6N */
 #ifdef SERIAL_DEBUG
 #include <serial.h>
 #include <fprintf.h>
@@ -39,11 +39,11 @@ extern tsFILE sSerStream;
 /****************************************************************************/
 #define BH1715_ADDRESS     (0x23)
 
-#define BH1715_TRIG        (0x23)
+#define BH1715_TRIG        (0x20)  /* OneShot H-Reso */
 
 #define BH1715_SOFT_RST    (0x07)
 
-#define BH1715_CONVTIME    (24+2) // 24ms MAX
+#define BH1715_CONVTIME    (98) // 16ms MAX
 
 #define BH1715_DATA_NOTYET  (-32768)
 #define BH1715_DATA_ERROR   (-32767)
@@ -99,7 +99,7 @@ PUBLIC bool_t bBH1715reset()
 {
   bool_t bOk = TRUE;
 
-  // bOk &= bSMBusWrite(BH1715_ADDRESS, BH1715_SOFT_RST, 0, NULL);
+  bOk &= bSMBusWrite(BH1715_ADDRESS, BH1715_SOFT_RST, 0, NULL);
   // then will need to wait at least 15ms
 
   return bOk;
@@ -155,10 +155,10 @@ PUBLIC int16 i16BH1715readResult()
   }
 
   i32result = ((au8data[0] << 8) | au8data[1]);
-  i32result = (i32result * 10 + 30) / 60; // i32result/1.2/5
+  //  i32result = (i32result * 10 + 30) / 60; // i32result/1.2/5
 
 #ifdef SERIAL_DEBUG
-  //  vfPrintf(&sDebugStream, "\n\rBH1715 DATA %x", *((uint16*)au8data) );
+  vfPrintf(&sSerStream,"\n\rBH1715 DATA %x", *((uint16*)au8data) );
 #endif
 
   return (int16)i32result;
@@ -178,6 +178,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
     if (pObj->u8TickCount < 100) {
       pObj->u8TickCount += pSnsObj->u8TickDelta;
 #ifdef SERIAL_DEBUG
+      vfPrintf(&sSerStream,"+" ); // DEBUG
       //      vfPrintf(&sDebugStream, "+");
 #endif
     }
@@ -185,6 +186,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
   case E_EVENT_START_UP:
     pObj->u8TickCount = 100; // expire immediately
 #ifdef SERIAL_DEBUG
+    vfPrintf(&sSerStream,"\n\rBH1715 WAKEUP" ); // DEBUG
     //    vfPrintf(&sDebugStream, "\n\rBH1715 WAKEUP");
 #endif
     break;
@@ -204,6 +206,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
       case E_ORDER_KICK:
 	vSnsObj_NewState(pSnsObj, E_SNSOBJ_STATE_MEASURING);
 #ifdef SERIAL_DEBUG
+	vfPrintf(&sSerStream,"\n\rBH1715 KICKED" ); // DEBUG
 	//	vfPrintf(&sDebugStream, "\n\rBH1715 KICKED");
 #endif
 	break;
@@ -255,6 +258,7 @@ PRIVATE void vProcessSnsObj_BH1715(void *pvObj, teEvent eEvent) {
     switch (eEvent) {
     case E_EVENT_NEW_STATE:
 #ifdef SERIAL_DEBUG
+      vfPrintf(&sSerStream,"\n\rBH1715_CP: %d", pObj->i16Result ); // DEBUG
       //      vfPrintf(&sDebugStream, "\n\rBH1715_CP: %d", pObj->i16Result);
 #endif
       break;

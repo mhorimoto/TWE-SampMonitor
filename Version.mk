@@ -1,8 +1,13 @@
 VERSION_MAIN = 1
 VERSION_SUB  = 5
-VERSION_VAR  = 6
+VERSION_VAR  = 6N
 
-# 1.5.6 BH1715 対応
+# 1.5.6N SERIAL_DEBUGを外す。
+# 1.5.6M 0x20にして、CONVTIMEを98にした。
+# 1.5.6L 0x20を0x23へもどす。
+# 1.5.6K BH1715_TRIGを0x20単発高解像度に変更。失敗。
+# 1.5.6J i16BH1715readResult()のi32resultの換算を停止させる。
+# 1.5.6H BH1715 対応
 # 1.5.5 インタラクティブモードの出力がおかしい点を修正
 # 1.5.4 BME280 対応、その他修正
 # 1.5.3 ADXL345 シェイクモードの調整 FIFOの修正
