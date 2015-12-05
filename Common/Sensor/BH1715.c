@@ -43,7 +43,7 @@ extern tsFILE sSerStream;
 
 #define BH1715_SOFT_RST    (0x07)
 
-#define BH1715_CONVTIME    (98) // 16ms MAX
+#define BH1715_CONVTIME    (98) // 98ms MAX
 
 #define BH1715_DATA_NOTYET  (-32768)
 #define BH1715_DATA_ERROR   (-32767)
