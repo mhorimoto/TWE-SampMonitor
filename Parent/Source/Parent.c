@@ -545,7 +545,7 @@ static void vProcessEvCore(tsEvent *pEv, teEvent eEvent, uint32 u32evarg) {
  */
 void vSerInitMessage() {
   if (!IS_APPCONF_OPT_UART()) {
-    A_PRINTF(LB "*** " APP_NAME " (Parent) %d.%02d-%d ***", VERSION_MAIN, VERSION_SUB, VERSION_VAR);
+    A_PRINTF(LB "*** " APP_NAME " (Parent) %d.%02d-%dP ***", VERSION_MAIN, VERSION_SUB, VERSION_VAR);
     A_PRINTF(LB "* App ID:%08x Long Addr:%08x Short Addr %04x LID %02d" LB,
 	     sToCoNet_AppContext.u32AppId, ToCoNet_u32GetSerial(), sToCoNet_AppContext.u16ShortAddress,
 	     sAppData.sFlash.sData.u8id);
@@ -866,11 +866,11 @@ void vSerOutput_Standard(tsRxPktInfo sRxPktInfo, uint8 *p) {
 
       uint16	u16adc1 = G_BE_WORD();
       uint16	u16adc2 = G_BE_WORD();
-      int16 i16temp = G_BE_WORD();
+      uint16    u16lux  = G_BE_WORD();
 
       // センサー情報
       A_PRINTF(":ba=%04d:a1=%04d:a2=%04d:il=%04d" LB,
-	       DECODE_VOLT(u8batt), u16adc1, u16adc2, i16temp);
+	       DECODE_VOLT(u8batt), u16adc1, u16adc2, u16lux);
 
 #ifdef USE_LCD
       // LCD への出力
