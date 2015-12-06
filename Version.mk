@@ -2,7 +2,9 @@ VERSION_MAIN = 1
 VERSION_SUB  = 5
 VERSION_VAR  = 6
 
-# 1.5.6P BH1715の出力が符号付きなので符号なしに変更。Parent.c
+# 1.5.6Q BH1715のMtreg=69で動作させる。BH1715.c (append_BH1715)
+# 1.5.6P BH1715のMtreg=31で動作する。BH1715.c (append_BH1715)
+# 1.5.6P BH1715の出力が符号付きなので符号なしに変更。Parent.c (append_BH1715)
 # 1.5.6N SERIAL_DEBUGを外す。
 # 1.5.6M 0x20にして、CONVTIMEを98にした。
 # 1.5.6L 0x20を0x23へもどす。

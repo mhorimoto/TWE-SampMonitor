@@ -41,6 +41,10 @@ extern tsFILE sSerStream;
 
 #define BH1715_TRIG        (0x20)  /* OneShot H-Reso */
 
+#define BH1715_MTREG31_1   (0x40)  // Mtreg 31
+#define BH1715_MTREG31_2   (0x7f)  // Mtreg 31
+#define BH1715_MTREG69_1   (0x42)  // Mtreg 69
+#define BH1715_MTREG69_2   (0x65)  // Mtreg 69
 #define BH1715_SOFT_RST    (0x07)
 
 #define BH1715_CONVTIME    (98) // 98ms MAX
@@ -120,6 +124,8 @@ PUBLIC bool_t bBH1715startRead()
 {
   bool_t bOk = TRUE;
 
+  bOk &= bSMBusWrite(BH1715_ADDRESS, BH1715_MTREG69_1, 0, NULL);
+  bOk &= bSMBusWrite(BH1715_ADDRESS, BH1715_MTREG69_2, 0, NULL);
   // start conversion (will take some ms according to bits accuracy)
   bOk &= bSMBusWrite(BH1715_ADDRESS, BH1715_TRIG, 0, NULL);
 
