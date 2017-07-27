@@ -1,6 +1,6 @@
 VERSION_MAIN = 1
 VERSION_SUB  = 5
-VERSION_VAR  = 6
+VERSION_VAR  = 7
 
 # 1.5.6Q BH1715のMtreg=69で動作させる。BH1715.c (append_BH1715)
 # 1.5.6P BH1715のMtreg=31で動作する。BH1715.c (append_BH1715)
