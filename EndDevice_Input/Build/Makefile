@@ -117,7 +117,7 @@ include ../../../../MkFiles/toconet.mk
 #CFLAGS += -DDUMMY
 CFLAGS += -DENDDEVICE_INPUT
 
-BOARD ?=
+BOARD ?= CNFMST
 
 ifeq ($(BOARD),TWX0003)
   CFLAGS += -DTWX0003
